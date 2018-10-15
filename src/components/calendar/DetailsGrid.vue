@@ -28,6 +28,14 @@
                             <option :selected="type.name == getVacationType(member, date).name" v-for="(type, index) in vacationTypes" :key="index"> {{ type.name }}</option>
                         </select>
                     </td>
+                    <div class="fixed-column-summary">
+                        <td>{{ member.leaveSummary.P }}</td>
+                        <td>{{ member.leaveSummary.V }}</td>
+                        <td>{{ member.leaveSummary.C }}</td>
+                        <td>{{ member.leaveSummary.W }}</td>
+                        <td>{{ member.leaveSummary.B }}</td>
+                        <td>{{ member.leaveSummary.M }}</td>
+                    </div>
                 </tr>
             </tbody>
         </table>
@@ -47,8 +55,6 @@ export default {
                 { id: 5, code: 'B', name: 'Bereavement Leave' },
                 { id: 6, code: 'M', name: 'Maternity Leave' }
             ],
-            vacation: '',
-            numberOfDays: 0,
             dates: []
         }
     },
@@ -89,10 +95,25 @@ export default {
                 return { date: date, daySeq: day, dayName: this.findDay(day)};
             });
         },
+
+        displaySummary() {
+            this.scrum.members.forEach(member => {
+                member.leaveSummary = {
+                    'P': member.leaves.filter(s => s.code === 'P').length,
+                    'V': member.leaves.filter(s => s.code === 'V').length,
+                    'C': member.leaves.filter(s => s.code === 'C').length,
+                    'W': member.leaves.filter(s => s.code === 'W').length,
+                    'B': member.leaves.filter(s => s.code === 'B').length,
+                    'M': member.leaves.filter(s => s.code === 'M').length
+                };
+            })
+            console.log(this.scrum.members);
+        },
         addVacation(event, adid, vDate) {
             const date = new Date(`${this.month.name} ${vDate}, ${this.year}`);
             const vacationId = this.vacationTypes.find(type => type.name === event.target.value).id;
             this.submitVacation({adid: adid, date: date});
+            this.displaySummary();
         },
         ...mapMutations({
             'submitVacation': 'addVacation'
@@ -100,6 +121,7 @@ export default {
     },
     mounted() {
         this.findDays();
+        this.displaySummary();
     },
     watch: {
         year() {
@@ -142,7 +164,7 @@ export default {
     }
     .fixed-column-summary {
         position: absolute;
-        left: 90%;
+        left: 92%;
         border: none !important;
     }
     .fixed-column-summary th {

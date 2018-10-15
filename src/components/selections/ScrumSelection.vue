@@ -33,6 +33,9 @@ export default {
         ...mapMutations([
             'scrumSelected'
         ])
+    },
+    mounted() {
+        this.$store.commit('scrumSelected', 1);
     }
 }
 </script>
