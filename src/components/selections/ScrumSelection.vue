@@ -13,9 +13,16 @@
 import { mapGetters, mapMutations } from 'vuex';
 export default {
     computed: {
+        selectedScrum: {
+            set(selectedScrum) {
+                this.$store.commit('scrumSelected', selectedScrum.id);
+            },
+            get() {
+                return this.$store.getters.selectedScrum;
+            }
+        },
         ...mapGetters({
-            'scrums': 'scrums',
-            'selectedScrum': 'selectedScrum'
+            'scrums': 'scrums'
         })
     },
     data: function() {
