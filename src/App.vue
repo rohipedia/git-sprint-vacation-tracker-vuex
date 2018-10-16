@@ -1,5 +1,5 @@
 <template>
-    <div class="row">
+    <div class="row app-body">
         <div class="col-lg-10 col-md-10 col-sm-10 .offset-md-1 .offset-lg-1 main-page">
             <app-header></app-header>
             <hr>
@@ -12,11 +12,6 @@
     import Header from './components/Header.vue';
 
     export default {
-        data() {
-            return {
-                
-            }
-        },
         components: {
             appHeader: Header
         }
@@ -27,6 +22,10 @@
     .main-page {
         margin-left: 5%;
         margin-top: 2%;
+    }
+    .app-body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: rgba(255, 255, 255, 0.322);
     }
 </style>
 

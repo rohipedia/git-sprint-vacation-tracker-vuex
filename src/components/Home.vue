@@ -1,8 +1,9 @@
 <template>
-    <h3>Home component</h3>
+    <div>
+        <h3>Vacation Tracker</h3>
+    </div>
 </template>
 <script>
 export default {
-    
 }
 </script>

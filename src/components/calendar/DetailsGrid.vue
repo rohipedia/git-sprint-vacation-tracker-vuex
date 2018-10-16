@@ -15,8 +15,8 @@
                         <th>V</th>
                         <th>C</th>
                         <th>W</th>
-                        <th>B</th>
-                        <th>M</th>
+                        <th>T</th>
+                        <th>S</th>
                     </div>
                 </tr>
             </thead>
@@ -25,7 +25,7 @@
                     <td class="fixed-column">{{ member.name }}</td>
                     <td v-for="(date, dIndex) in dates" :key="dIndex">
                         <select name="" class="custom-select form-control" @change="addVacation($event, member.adid, date.date)" :disabled="date.daySeq === 6 || date.daySeq === 0">
-                            <option :selected="type.name == getVacationType(member, date).name" v-for="(type, index) in vacationTypes" :key="index"> {{ type.name }}</option>
+                            <option :selected="type.name == getVacationType(member, date).name" v-for="type in vacationTypes" :key="member.adid + '' + date.date + '' + type.id"> {{ type.name }}</option>
                         </select>
                     </td>
                     <div class="fixed-column-summary">
@@ -33,8 +33,8 @@
                         <td>{{ member.leaveSummary.V }}</td>
                         <td>{{ member.leaveSummary.C }}</td>
                         <td>{{ member.leaveSummary.W }}</td>
-                        <td>{{ member.leaveSummary.B }}</td>
-                        <td>{{ member.leaveSummary.M }}</td>
+                        <td>{{ member.leaveSummary.T }}</td>
+                        <td>{{ member.leaveSummary.S }}</td>
                     </div>
                 </tr>
             </tbody>
@@ -52,8 +52,8 @@ export default {
                 { id: 2, code: 'V', name: 'Vacation' },
                 { id: 3, code: 'C', name: 'Compensatory Off' },
                 { id: 4, code: 'W', name: 'Work from home' },
-                { id: 5, code: 'B', name: 'Bereavement Leave' },
-                { id: 6, code: 'M', name: 'Maternity Leave' }
+                { id: 5, code: 'T', name: 'Training' },
+                { id: 6, code: 'S', name: 'Sick Leave' }
             ],
             dates: []
         }
@@ -95,40 +95,47 @@ export default {
                 return { date: date, daySeq: day, dayName: this.findDay(day)};
             });
         },
-
+        getLeaveCount(leaves, code) {
+            const currentMonth = this.month.number, year = this.year;
+            return leaves.filter(s => s.code === code).filter(leave => {
+                const month = leave.date.getDate() === 1 ? leave.date.getUTCMonth() + 1 : leave.date.getUTCMonth();
+                return month == currentMonth && leave.date.getFullYear() == year;
+            }).length;
+        },
         displaySummary() {
             this.scrum.members.forEach(member => {
                 member.leaveSummary = {
-                    'P': member.leaves.filter(s => s.code === 'P').length,
-                    'V': member.leaves.filter(s => s.code === 'V').length,
-                    'C': member.leaves.filter(s => s.code === 'C').length,
-                    'W': member.leaves.filter(s => s.code === 'W').length,
-                    'B': member.leaves.filter(s => s.code === 'B').length,
-                    'M': member.leaves.filter(s => s.code === 'M').length
+                    'P': this.getLeaveCount(member.leaves, 'P'),
+                    'V': this.getLeaveCount(member.leaves, 'V'),
+                    'C': this.getLeaveCount(member.leaves, 'C'),
+                    'W': this.getLeaveCount(member.leaves, 'W'),
+                    'T': this.getLeaveCount(member.leaves, 'T'),
+                    'S': this.getLeaveCount(member.leaves, 'S')
                 };
-            })
-            console.log(this.scrum.members);
+            });
         },
         addVacation(event, adid, vDate) {
-            const date = new Date(`${this.month.name} ${vDate}, ${this.year}`);
-            const vacationId = this.vacationTypes.find(type => type.name === event.target.value).id;
-            this.submitVacation({adid: adid, date: date});
+            this.submitVacation({adid: adid, date: new Date(`${this.month.name} ${vDate}, ${this.year}`)});
             this.displaySummary();
         },
         ...mapMutations({
             'submitVacation': 'addVacation'
         })
     },
+    created() {
+        this.displaySummary();
+    },
     mounted() {
         this.findDays();
-        this.displaySummary();
     },
     watch: {
         year() {
             this.findDays();
+            this.displaySummary();
         },
         month() {
             this.findDays();
+            this.displaySummary();
         }
     },
     computed: {
@@ -157,7 +164,8 @@ export default {
         padding: 0;
     }
     .fixed-column {
-        position: absolute;
+        position: fixed;
+        width: 10%;
         left: 0%;
         margin-top: 5px;
         border: none;

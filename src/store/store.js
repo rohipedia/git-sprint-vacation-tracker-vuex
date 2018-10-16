@@ -15,11 +15,6 @@ export const store = new Vuex.Store({
             return state.members
         }
     },
-    mutations: {
-        addMember: (state, payload) => {
-            state.members.push(payload);
-        }
-    },
     modules: {
         scrums,
         period
