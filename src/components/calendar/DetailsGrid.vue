@@ -55,7 +55,8 @@ export default {
                 { id: 5, code: 'T', name: 'Training' },
                 { id: 6, code: 'S', name: 'Sick Leave' }
             ],
-            dates: []
+            dates: [],
+            scrum: {}
         }
     },
     methods: {
@@ -114,6 +115,12 @@ export default {
                 };
             });
         },
+        activated() {
+            console.log(this.$store.getters.scrums);
+        },
+        deactivated() {
+            console.log(this.$store.getters.scrums);
+        },
         addVacation(event, adid, vDate) {
             this.submitVacation({adid: adid, date: new Date(`${this.month.name} ${vDate}, ${this.year}`)});
             this.displaySummary();
@@ -123,6 +130,7 @@ export default {
         })
     },
     created() {
+        this.scrum = this.scrums.find(scrum => scrum.id === this.selectedScrum);
         this.displaySummary();
     },
     mounted() {
@@ -136,11 +144,15 @@ export default {
         month() {
             this.findDays();
             this.displaySummary();
+        },
+        selectedScrum() {
+            this.scrum = this.scrums.find(scrum => scrum.id === this.selectedScrum);
+            this.displaySummary();
         }
     },
     computed: {
         ...mapGetters({
-            'scrum': 'selectedScrum',
+            'selectedScrum': 'selectedScrum',
             'scrums': 'scrums',
             'year': 'selectedYear',
             'month': 'selectedMonth'

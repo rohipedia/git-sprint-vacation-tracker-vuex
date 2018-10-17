@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                 <select class="form-control" v-model="selectedScrum">
-                    <option v-for="scrum in scrums" :key="scrum.id" :value="scrum">{{ scrum.name }}</option>
+                    <option v-for="(scrum, index) in scrums" :key="index" :value="scrum.id">{{ scrum.name }}</option>
                 </select>
             </div>
         </div>
@@ -15,7 +15,7 @@ export default {
     computed: {
         selectedScrum: {
             set(selectedScrum) {
-                this.$store.commit('scrumSelected', selectedScrum.id);
+                this.$store.commit('scrumSelected', selectedScrum);
             },
             get() {
                 return this.$store.getters.selectedScrum;
@@ -34,6 +34,7 @@ export default {
             'scrumSelected'
         ])
     },
+    
     mounted() {
         this.$store.commit('scrumSelected', 1);
     }

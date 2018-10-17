@@ -195,7 +195,7 @@ const state = {
 
 const getters = {
     selectedScrum: state => {
-        return state.selectedScrum.id ? state.selectedScrum : state.scrums[0];
+        return state.selectedScrum.id ? state.selectedScrum.id : state.scrums[0].id;
     },
     scrums: state => {
         return state.scrums;
@@ -213,7 +213,7 @@ const mutations = {
         });
     },
     scrumSelected: (state, payload) => {
-        state.selectedScrum = state.scrums.find(scrum => scrum.id === payload)
+        state.selectedScrum = state.scrums.find(scrum => scrum.id === payload);
     },
     addVacation: (state, payload) => {
         let member = state.selectedScrum.members.find(m => m.adid === payload.adid);

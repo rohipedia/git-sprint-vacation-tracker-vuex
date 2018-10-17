@@ -16,12 +16,12 @@
             <div class="form-group">
                 <label for="">Scrum</label>
                 <select name="" id="" v-model="member.scrum" class="form-control" required>
-                    <option :selected="scrum.id = 1" :value="scrum.id" v-for="(scrum, index) in scrums" :key="index">{{ scrum.name }}</option>
+                    <option :selected="scrum.id === 1" :value="scrum.id" v-for="(scrum, index) in scrums" :key="index">{{ scrum.name }}</option>
                 </select>
             </div>
         </form>
         <div class="col-lg-6 col-md-8">
-            <button class="btn btn-primary" @click="addMember(member);resetForm">Add</button>
+            <button class="btn btn-primary" @click="addMember(member);member = {}">Add</button>
         </div>
     </div>
     
@@ -40,10 +40,6 @@ export default {
         }
     },
     methods: {
-        resetForm() {
-            this.member = {};
-            this.$router.push({ name: 'calendar'});
-        },
         ...mapMutations({
             'addMember': 'addMember'
         })
