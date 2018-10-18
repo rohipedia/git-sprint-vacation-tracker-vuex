@@ -1,50 +1,18 @@
 <template>
     <div>
-        <form class="form-group col-lg-6 col-md-8" name="memberForm">
-            <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" class="form-control" v-model="member.name">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <router-link tag="a" to="/allMembers" active-class="active" exact class="nav-link">All Members</router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link tag="a" to="/addMember" active-class="active" exact class="nav-link">Add Member</router-link>
+                    </li>
+                </ul>
             </div>
-            <div class="form-group">
-                <label for="">ADID</label>
-                <input type="text" class="form-control" v-model="member.adid">
-            </div>
-            <div class="form-group">
-                <label for="">email</label>
-                <input type="text" class="form-control" v-model="member.email">
-            </div>
-            <div class="form-group">
-                <label for="">Scrum</label>
-                <select name="" id="" v-model="member.scrum" class="form-control" required>
-                    <option :selected="scrum.id === 1" :value="scrum.id" v-for="(scrum, index) in scrums" :key="index">{{ scrum.name }}</option>
-                </select>
-            </div>
-        </form>
-        <div class="col-lg-6 col-md-8">
-            <button class="btn btn-primary" @click="addMember(member);member = {}">Add</button>
         </div>
+        <hr>
+        <router-view></router-view>
     </div>
-    
 </template>
-<script>
-import { mapMutations, mapGetters } from 'vuex';
-export default {
-    computed: {
-        ...mapGetters({
-            'scrums': 'scrums'
-        })
-    },
-    data() {
-        return {
-            member: {}
-        }
-    },
-    methods: {
-        ...mapMutations({
-            'addMember': 'addMember'
-        })
-    }
-}
-</script>
-<style>
-</style>

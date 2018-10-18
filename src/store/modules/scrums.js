@@ -15,16 +15,16 @@ const state = {
             "name": "Alpha",
             "members": [
                 {
-                    "name": "Anjam",
+                    "name": "Anjam Pathan",
                     "adid": "1",
-                    "email": "",
+                    "email": "anjam.pathan@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Bhavik",
+                    "name": "Bhavik Pandya",
                     "adid": "2",
-                    "email": "",
+                    "email": "bhavik.pandya@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -35,16 +35,16 @@ const state = {
             "name": "Baahubali",
             "members": [
                 {
-                    "name": "Ankit",
+                    "name": "Ankit Shukla",
                     "adid": "3",
-                    "email": "",
+                    "email": "ankit.c.shukla@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Ashita",
+                    "name": "Ashita Sharma",
                     "adid": "4",
-                    "email": "",
+                    "email": "ashita.sharma@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -55,16 +55,16 @@ const state = {
             "name": "Flash",
             "members": [
                 {
-                    "name": "Komal",
+                    "name": "Komal Shah",
                     "adid": "5",
-                    "email": "",
+                    "email": "komal.d.shah@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Kishan",
+                    "name": "Kishan Rawal",
                     "adid": "6",
-                    "email": "",
+                    "email": "kishan.rawal@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -75,16 +75,16 @@ const state = {
             "name": "Phantom",
             "members": [
                 {
-                    "name": "Prasanna",
+                    "name": "Prasanna Phadke",
                     "adid": "7",
-                    "email": "",
+                    "email": "prasanna.phadke@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Bhakti",
+                    "name": "Bhakti Shah",
                     "adid": "8",
-                    "email": "",
+                    "email": "bhakti.vijay.shah@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -95,16 +95,16 @@ const state = {
             "name": "Roadies",
             "members": [
                 {
-                    "name": "Divya",
+                    "name": "Divya Achhra",
                     "adid": "9",
-                    "email": "",
+                    "email": "divya.achhra@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Chandan",
+                    "name": "Chandan Singh Tamang",
                     "adid": "10",
-                    "email": "",
+                    "email": "chandan.singh.tamang@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -115,16 +115,16 @@ const state = {
             "name": "Rogue",
             "members": [
                 {
-                    "name": "Shikha",
+                    "name": "Shikha Singh",
                     "adid": "11",
-                    "email": "",
+                    "email": "shikha.m.singh@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Shobhit",
+                    "name": "Shobhit Jain",
                     "adid": "12",
-                    "email": "",
+                    "email": "shobhit.c.jain@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -135,16 +135,16 @@ const state = {
             "name": "Stormtroopers",
             "members": [
                 {
-                    "name": "Harmeet",
+                    "name": "Harmeet Kaur",
                     "adid": "13",
-                    "email": "",
+                    "email": "h.kaur.bhengura@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Kanika",
+                    "name": "Kanika Khurana",
                     "adid": "14",
-                    "email": "",
+                    "email": "kanika.khurana@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -155,16 +155,16 @@ const state = {
             "name": "Utopians",
             "members": [
                 {
-                    "name": "Shraddha",
+                    "name": "Shraddha Modi",
                     "adid": "15",
-                    "email": "",
+                    "email": "shraddha.k.modi@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Pawan",
+                    "name": "Pawan Dunna",
                     "adid": "16",
-                    "email": "",
+                    "email": "dl.pawan.vicky@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -175,16 +175,16 @@ const state = {
             "name": "WhiteWalkers",
             "members": [
                 {
-                    "name": "Puja",
+                    "name": "Puja Jain",
                     "adid": "17",
-                    "email": "",
+                    "email": "puja.a.jain@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 },
                 {
-                    "name": "Rohit",
+                    "name": "Rohit Vhora",
                     "adid": "18",
-                    "email": "",
+                    "email": "rohit.vhora@accenture.com",
                     "leaveSummary": {},
                     "leaves": []
                 }
@@ -231,7 +231,12 @@ const mutations = {
             member.leaves.splice(index, 1);
             member.leaves.push(vacationDetails);
         }
+    },
+    removeMember: (state, payload) => {
+        const scrum = state.scrums.find(s => s.members.find(member => member.adid === payload));
+        scrum.members.splice(scrum.members.findIndex(member => member.adid === payload), 1);
     }
+
 }
 
 export default {
